@@ -9,7 +9,6 @@ package org.dspace.app.rest.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +32,8 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
 
     private RestAuthenticationService restAuthenticationService;
 
-    public StatelessLoginFilter(String url, AuthenticationManager authenticationManager, RestAuthenticationService restAuthenticationService) {
+    public StatelessLoginFilter(String url, AuthenticationManager authenticationManager,
+                                RestAuthenticationService restAuthenticationService) {
         super(new AntPathRequestMatcher(url));
         this.authenticationManager = authenticationManager;
         this.restAuthenticationService = restAuthenticationService;
@@ -47,10 +47,10 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
         String password = req.getParameter("password");
 
         return authenticationManager.authenticate(
-                new DSpaceAuthentication(
-                        user,
-                        password,
-                        new ArrayList<>())
+            new DSpaceAuthentication(
+                user,
+                password,
+                new ArrayList<>())
         );
     }
 
